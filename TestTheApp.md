@@ -115,16 +115,3 @@ This document provides instructions on testing the REST API endpoints using Post
 - **Invalid JSON Body**: Missing or invalid fields during `POST` or `PUT` requests should return `400 Bad Request`.
 - **Non-existent Product ID**: Accessing, updating, or deleting a non-existent product ID should return `404 Not Found`.
 
----
-
-## Running Unit Tests
-
-To run the included tests in the application:
-1. **Access the Docker Container**
-    ```bash
-    docker exec -it simpler_app sh
-    ```
-2. **Run the Tests**
-    ```bash
-    go test ./... -v
-    ```
