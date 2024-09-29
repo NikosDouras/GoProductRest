@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -19,6 +20,10 @@ func main() {
 
 	// Connect to database
 	database.Connect()
+
+	if os.Getenv("GO_ENV") == "production" {
+		gin.SetMode(gin.ReleaseMode)
+	}
 
 	// Initialize Gin router
 	r := gin.Default()
