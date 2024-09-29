@@ -38,8 +38,8 @@ The application contains unit tests for the following scenarios:
    
    Run the Tests:
     Once inside the container, run:
-   ```bash
-   go test ./... -v
+
+   `go test ./... -v`
 
 ---
 
