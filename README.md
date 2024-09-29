@@ -33,8 +33,8 @@ The application contains unit tests for the following scenarios:
 
 1. **Access the Docker Container**:  
    Enter the running container for the application:
-   ```bash
-   docker exec -it simpler_app sh
+   
+   `docker exec -it simpler_app sh`
    
    Run the Tests:
     Once inside the container, run:
