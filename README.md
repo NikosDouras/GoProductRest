@@ -5,6 +5,8 @@ This is a RESTful API for managing products in a store. It supports CRUD operati
 
 The live server is deployed on Digital Ocean and accessible at: http://165.232.66.26:8080/products
 
+You can find instructions for testing the endpoints at ./TestTheApp.md
+
 
 ---
 
