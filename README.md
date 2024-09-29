@@ -16,6 +16,17 @@ The live server is deployed on Digital Ocean and accessible at: http://165.232.6
 
 ---
 
+## Unit Tests
+
+The application contains unit tests for the following scenarios:
+- **Product Creation**: Validates the creation of a new product and tests error scenarios for missing or invalid fields.
+- **Product Retrieval**: Tests fetching all products with and without pagination, including edge cases like non-existent pages.
+- **Product Retrieval by ID**: Retrieves a product by ID and handles cases where the product does not exist.
+- **Product Update**: Validates the updating of a product, including error handling for incomplete or invalid data and non-existent IDs.
+- **Product Deletion**: Tests product deletion by ID and checks responses for invalid or non-existent product IDs.
+
+---
+
 ## Setup and Deployment with Docker
 
 ### Prerequisites
