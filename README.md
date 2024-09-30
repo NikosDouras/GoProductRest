@@ -52,7 +52,7 @@ Ensure you have Docker and Docker Compose installed.
 1. **Clone the Repository**
     ```bash
     git clone https://github.com/NikosDouras/GoProductRest.git
-    cd simpler-project
+    cd GoProductRest
     ```
 
 2. **Create Environment File**
