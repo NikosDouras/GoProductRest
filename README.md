@@ -42,7 +42,7 @@ Ensure you have Docker and Docker Compose installed.
     ```
 
 2. **Create Environment File**
-   Create a `.env` file in the root directory with the following content:
+   Create a `.env` file in the root directory with the following content (this is an example, password, user etc can be changed as you like):
     ```env
     POSTGRES_USER=postgres
     POSTGRES_PASSWORD=oOYyyha5lFkEyiWsy855
