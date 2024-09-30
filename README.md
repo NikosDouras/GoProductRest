@@ -29,20 +29,6 @@ The application contains unit tests for the following scenarios:
 
 ---
 
-## Running Unit Tests
-
-1. **Access the Docker Container**:  
-   Enter the running container for the application:
-   
-   `docker exec -it simpler_app sh`
-   
-   Run the Tests:
-    Once inside the container, run:
-
-   `go test ./... -v`
-
----
-
 ## Setup and Deployment with Docker
 
 ### Prerequisites
@@ -71,6 +57,21 @@ Ensure you have Docker and Docker Compose installed.
     docker-compose up --build
     ```
    This will start both the database and the application containers. The app will be available at: http://localhost:8080/products
+
+---
+
+## Running Unit Tests
+
+1. **Access the Docker Container**:  
+   Enter the running container for the application:
+   
+   `docker exec -it simpler_app sh`
+   
+   Run the Tests:
+    Once inside the container, run:
+
+   `go test ./... -v`
+
 
 
 
