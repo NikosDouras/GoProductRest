@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// CreateProduct adds a new product
+// CreateProduct
 func CreateProduct(c *gin.Context) {
 	var product models.Product
 	if err := c.ShouldBindJSON(&product); err != nil {
@@ -26,12 +26,11 @@ func CreateProduct(c *gin.Context) {
 	c.JSON(http.StatusCreated, product)
 }
 
-// GetProducts retrieves all products with pagination
+// GetProducts with pagination
 func GetProducts(c *gin.Context) {
 	var products []models.Product
 	var total int64
 
-	// Pagination parameters
 	limitParam := c.DefaultQuery("limit", "10")
 	pageParam := c.DefaultQuery("page", "1")
 
@@ -63,7 +62,7 @@ func GetProducts(c *gin.Context) {
 	})
 }
 
-// GetProduct retrieves a product by ID
+// GetProduct by ID
 func GetProduct(c *gin.Context) {
 	id := c.Param("id")
 
@@ -75,7 +74,6 @@ func GetProduct(c *gin.Context) {
 
 	var product models.Product
 
-	// Find the product by ID
 	result := database.DB.First(&product, id)
 	if result.Error != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
@@ -97,7 +95,6 @@ func UpdateProduct(c *gin.Context) {
 
 	var existingProduct models.Product
 
-	// Find the product by ID
 	result := database.DB.First(&existingProduct, id)
 	if result.Error != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
