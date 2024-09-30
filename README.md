@@ -51,7 +51,7 @@ Ensure you have Docker and Docker Compose installed.
 ### Steps to Deploy Locally
 1. **Clone the Repository**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/NikosDouras/GoProductRest.git
     cd simpler-project
     ```
 
