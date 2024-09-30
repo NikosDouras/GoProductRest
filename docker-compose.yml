@@ -32,7 +32,7 @@ services:
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       DB_NAME: ${POSTGRES_DB}
       DB_PORT: ${DB_PORT}
-    # Use volume to include .env file for the app service (if needed)
+    
     volumes:
       - ./.env:/app/.env
 
