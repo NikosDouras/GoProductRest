@@ -19,7 +19,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run tests
-                sh 'go test ./...'
+                sh 'go test -v ./...'
             }
         }
 
@@ -30,18 +30,9 @@ pipeline {
             }
             steps {
                 script {
-                    // Example Docker deployment
-                    // Build Docker image
-                    sh 'docker build -t goproductrest:latest .'
-
-                    // Stop the old container (if exists)
-                    sh 'docker stop goproductrest || true'
-
-                    // Remove the old container (if exists)
-                    sh 'docker rm goproductrest || true'
-
-                    // Run the new container
-                    sh 'docker run -d --name goproductrest -p 8080:8080 goproductrest:latest'
+                    // Use Docker Compose to build and deploy
+                    sh 'docker-compose down || true'  // Stop any running containers
+                    sh 'docker-compose up --build -d' // Build and start new containers
                 }
             }
         }
