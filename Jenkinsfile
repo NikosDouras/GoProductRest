@@ -2,6 +2,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Verify Environment') {
+            steps {
+                sh 'go version'
+                sh 'docker --version'
+                sh 'docker-compose --version'
+            }
+        }
+
         stage('Checkout') {
             steps {
                 // Clone your GitHub repository
@@ -11,6 +19,8 @@ pipeline {
 
         stage('Build') {
             steps {
+                // Cache Go dependencies
+                sh 'go mod download'  
                 // Build the Go application
                 sh 'go build -v ./...'
             }
@@ -22,30 +32,19 @@ pipeline {
                 sh 'go test -v ./...'
             }
         }
-
-        stage('Deploy') {
-            when {
-                // Only proceed if the build and tests pass
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-                script {
-                    // Use Docker Compose to build and deploy
-                    sh 'docker-compose down || true'  // Stop any running containers
-                    sh 'docker-compose up --build -d' // Build and start new containers
-                }
-            }
-        }
     }
 
     post {
-        failure {
-            // Notify on failure
-            echo 'Build or tests failed. No deployment performed.'
-        }
         success {
-            // Notify on success
             echo 'Build and tests passed! Deployment successful.'
+            script {
+                // Use Docker Compose to deploy the application
+                sh 'docker-compose down --remove-orphans || true'  // Clean up orphan containers
+                sh 'docker-compose up --build -d' // Build and start new containers
+            }
+        }
+        failure {
+            echo 'Build or tests failed. No deployment performed.'
         }
     }
 }
