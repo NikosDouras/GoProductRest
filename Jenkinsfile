@@ -41,8 +41,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    bat 'docker-compose down || true'  
-                    bat 'docker-compose up --build -d' 
+                    // Separate the commands without '|| true' for Windows compatibility
+                    bat '''
+                    docker-compose down
+                    docker-compose up --build -d
+                    '''
                 }
             }
         }
