@@ -3,10 +3,10 @@ pipeline {
 
     environment {
         GO_ENV = 'production'                 // Set to your desired environment
-        DB_HOST = 'your-db-host'              // Replace with your DB host
-        POSTGRES_USER = 'your-postgres-user'  // Replace with your PostgreSQL user
-        POSTGRES_PASSWORD = 'your-password'   // Replace with your PostgreSQL password
-        POSTGRES_DB = 'your-database-name'    // Replace with your database name
+        DB_HOST = 'db'              // Replace with your DB host
+        POSTGRES_USER = 'postgres'  // Replace with your PostgreSQL user
+        POSTGRES_PASSWORD = 'oOYyyha5lFkEyiWsy855'   // Replace with your PostgreSQL password
+        POSTGRES_DB = 'products_db'    // Replace with your database name
         DB_PORT = '5432'                      // Replace with your DB port (if different)
     }
 
