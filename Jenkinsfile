@@ -12,8 +12,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                // Clone your GitHub repository
-                git url: 'https://github.com/NikosDouras/GoProductRest.git'
+                // Clone your GitHub repository and ensure it's pointing to the correct branch ('main')
+                git branch: 'main', url: 'https://github.com/NikosDouras/GoProductRest.git'
             }
         }
 
