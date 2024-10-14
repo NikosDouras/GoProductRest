@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     environment {
-        GO_ENV = 'production'                 // Set to your desired environment
-        DB_HOST = 'db'              // Replace with your DB host
-        POSTGRES_USER = 'postgres'  // Replace with your PostgreSQL user
-        POSTGRES_PASSWORD = 'oOYyyha5lFkEyiWsy855'   // Replace with your PostgreSQL password
-        POSTGRES_DB = 'products_db'    // Replace with your database name
-        DB_PORT = '5432'                      // Replace with your DB port (if different)
+        POSTGRES_USER = 'postgres'
+        POSTGRES_PASSWORD = 'oOYyyha5lFkEyiWsy855'
+        POSTGRES_DB = 'products_db'
+        DB_HOST = 'db'
+        DB_PORT = '5432'
+        GO_ENV = 'production'
     }
 
     stages {
@@ -21,19 +21,23 @@ pipeline {
 
         stage('Checkout') {
             steps {
+                // Clone your GitHub repository and ensure it's pointing to the correct branch ('main')
                 git branch: 'main', url: 'https://github.com/NikosDouras/GoProductRest.git'
             }
         }
 
         stage('Build') {
             steps {
+                // Cache Go dependencies
                 bat 'go mod download'
+                // Build the Go application
                 bat 'go build -v ./...'
             }
         }
 
         stage('Test') {
             steps {
+                // Run tests
                 bat 'go test -v ./...'
             }
         }
@@ -41,7 +45,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Separate the commands without '|| true' for Windows compatibility
+                    // Use Docker Compose to deploy the application with environment variables
                     bat '''
                     docker-compose down
                     docker-compose up --build -d
