@@ -36,5 +36,5 @@ func main() {
 	r.DELETE("/products/:id", handlers.DeleteProduct)
 
 	// Run the server
-	r.Run(":8080") // Default port is 8080
+	r.Run(":8081") // Default port is 8080
 }
