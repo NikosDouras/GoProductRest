@@ -4,9 +4,9 @@ pipeline {
     stages {
         stage('Verify Environment') {
             steps {
-                sh 'go version'
-                sh 'docker --version'
-                sh 'docker-compose --version'
+                bat 'go version'
+                bat 'docker --version'
+                bat 'docker-compose --version'
             }
         }
 
@@ -20,16 +20,26 @@ pipeline {
         stage('Build') {
             steps {
                 // Cache Go dependencies
-                sh 'go mod download'  
+                bat 'go mod download'
                 // Build the Go application
-                sh 'go build -v ./...'
+                bat 'go build -v ./...'
             }
         }
 
         stage('Test') {
             steps {
                 // Run tests
-                sh 'go test -v ./...'
+                bat 'go test -v ./...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    // Use Docker Compose to deploy the application
+                    bat 'docker-compose down || true'  // Stop any running containers
+                    bat 'docker-compose up --build -d' // Build and start new containers
+                }
             }
         }
     }
@@ -37,11 +47,6 @@ pipeline {
     post {
         success {
             echo 'Build and tests passed! Deployment successful.'
-            script {
-                // Use Docker Compose to deploy the application
-                sh 'docker-compose down --remove-orphans || true'  // Clean up orphan containers
-                sh 'docker-compose up --build -d' // Build and start new containers
-            }
         }
         failure {
             echo 'Build or tests failed. No deployment performed.'
